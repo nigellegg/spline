@@ -1,0 +1,10 @@
+,input_col_names,Input_spline_ids,Input_Datatype,Input_Source,Output_names,output_spline_id,Output_datatype,Output_dest
+0,emp_id,16,integer,file:/c:/Work/pyspline/pyspline/emp_data.csv,emp_id,16,integer,file:/c:/Work/pyspline/pyspline/results.csv
+1,name,17,string,file:/c:/Work/pyspline/pyspline/emp_data.csv,Name,30,string,file:/c:/Work/pyspline/pyspline/results.csv
+2,manager_id,18,integer,file:/c:/Work/pyspline/pyspline/emp_data.csv,manager_id,18,integer,file:/c:/Work/pyspline/pyspline/results.csv
+3,year_joined,19,integer,file:/c:/Work/pyspline/pyspline/emp_data.csv,year_joined,19,integer,file:/c:/Work/pyspline/pyspline/results.csv
+4,dept_id,20,integer,file:/c:/Work/pyspline/pyspline/emp_data.csv,dept_id,20,integer,file:/c:/Work/pyspline/pyspline/results.csv
+5,gender,21,string,file:/c:/Work/pyspline/pyspline/emp_data.csv,gender,21,string,file:/c:/Work/pyspline/pyspline/results.csv
+6,salary,22,integer,file:/c:/Work/pyspline/pyspline/emp_data.csv,salary,22,integer,file:/c:/Work/pyspline/pyspline/results.csv
+7,dept_name,90,string,file:/c:/Work/pyspline/pyspline/dept.csv,dept_name,90,string,file:/c:/Work/pyspline/pyspline/results.csv
+8,dept_id1,91,integer,file:/c:/Work/pyspline/pyspline/dept.csv,dept_id1,91,integer,file:/c:/Work/pyspline/pyspline/results.csv

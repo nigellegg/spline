@@ -1,0 +1,268 @@
+{
+  "executionPlan": {
+    "id": "951ef83e-435e-4180-8a14-636092fb49be",
+    "name": "python_example.py",
+    "operations": {
+      "write": {
+        "outputSource": "file:/c:/Work/pyspline/pyspline/agg.csv",
+        "append": false,
+        "id": "0",
+        "name": "InsertIntoHadoopFsRelationCommand",
+        "childIds": [
+          "1"
+        ],
+        "params": {
+          "header": "true",
+          "path": "agg.csv"
+        },
+        "extra": {
+          "destinationType": "csv"
+        }
+      },
+      "reads": [
+        {
+          "inputSources": [
+            "file:/c:/Work/pyspline/pyspline/emp_data.csv"
+          ],
+          "id": "3",
+          "name": "LogicalRelation",
+          "output": [
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22"
+          ],
+          "params": {
+            "header": "true",
+            "inferschema": "true",
+            "path": "emp_data.csv"
+          },
+          "extra": {
+            "sourceType": "csv"
+          }
+        }
+      ],
+      "other": [
+        {
+          "id": "2",
+          "name": "Aggregate",
+          "childIds": [
+            "3"
+          ],
+          "output": [
+            "18",
+            "102"
+          ],
+          "params": {
+            "groupingExpressions": [
+              {
+                "__attrId": "18"
+              }
+            ],
+            "aggregateExpressions": [
+              {
+                "__attrId": "18"
+              },
+              {
+                "__exprId": "1e970874-03d9-4522-95a4-a3570fef166b"
+              }
+            ]
+          }
+        },
+        {
+          "id": "1",
+          "name": "Repartition",
+          "childIds": [
+            "2"
+          ],
+          "output": [
+            "18",
+            "102"
+          ],
+          "params": {
+            "numPartitions": 1,
+            "shuffle": false
+          }
+        }
+      ]
+    },
+    "attributes": [
+      {
+        "id": "16",
+        "dataType": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+        "name": "emp_id"
+      },
+      {
+        "id": "17",
+        "dataType": "05345d14-609d-4c62-8c33-48961a117d76",
+        "name": "name"
+      },
+      {
+        "id": "18",
+        "dataType": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+        "name": "manager_id"
+      },
+      {
+        "id": "19",
+        "dataType": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+        "name": "year_joined"
+      },
+      {
+        "id": "20",
+        "dataType": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+        "name": "dept_id"
+      },
+      {
+        "id": "21",
+        "dataType": "05345d14-609d-4c62-8c33-48961a117d76",
+        "name": "gender"
+      },
+      {
+        "id": "22",
+        "dataType": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+        "name": "salary"
+      },
+      {
+        "id": "102",
+        "dataType": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+        "childRefs": [
+          {
+            "__exprId": "1e970874-03d9-4522-95a4-a3570fef166b"
+          }
+        ],
+        "name": "total_salary"
+      }
+    ],
+    "expressions": {
+      "functions": [
+        {
+          "id": "bf66eb89-3504-44cf-a33d-e3f1daaf0df2",
+          "dataType": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+          "childRefs": [
+            {
+              "__attrId": "22"
+            }
+          ],
+          "extra": {
+            "simpleClassName": "Cast",
+            "_typeHint": "expr.Generic"
+          },
+          "name": "cast",
+          "params": {
+            "timeZoneId": "Europe/London"
+          }
+        },
+        {
+          "id": "cab2a849-a4e4-41e2-8c48-26bde9065545",
+          "dataType": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+          "childRefs": [
+            {
+              "__exprId": "bf66eb89-3504-44cf-a33d-e3f1daaf0df2"
+            }
+          ],
+          "extra": {
+            "simpleClassName": "aggregate.Sum",
+            "_typeHint": "expr.Generic"
+          },
+          "name": "sum"
+        },
+        {
+          "id": "86751ec3-fcd5-46f9-8fbb-a032d4fa8b30",
+          "dataType": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+          "childRefs": [
+            {
+              "__exprId": "cab2a849-a4e4-41e2-8c48-26bde9065545"
+            }
+          ],
+          "extra": {
+            "simpleClassName": "aggregate.AggregateExpression",
+            "_typeHint": "expr.Generic"
+          },
+          "name": "aggregateexpression",
+          "params": {
+            "isDistinct": false,
+            "resultId": "ExprId(101,6c5145d2-ee74-4e8e-8280-96db26e4c41a)",
+            "mode": "Complete"
+          }
+        },
+        {
+          "id": "1e970874-03d9-4522-95a4-a3570fef166b",
+          "dataType": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+          "childRefs": [
+            {
+              "__exprId": "86751ec3-fcd5-46f9-8fbb-a032d4fa8b30"
+            }
+          ],
+          "extra": {
+            "simpleClassName": "Alias",
+            "_typeHint": "expr.Alias"
+          },
+          "name": "total_salary",
+          "params": {
+            "name": "total_salary",
+            "nonInheritableMetadataKeys": [
+              "__dataset_id",
+              "__col_position"
+            ],
+            "explicitMetadata": "{}",
+            "exprId": "ExprId(102,6c5145d2-ee74-4e8e-8280-96db26e4c41a)"
+          }
+        }
+      ]
+    },
+    "systemInfo": {
+      "name": "spark",
+      "version": "3.1.2"
+    },
+    "agentInfo": {
+      "name": "spline",
+      "version": "0.6.1"
+    },
+    "extraInfo": {
+      "appName": "python_example.py",
+      "dataTypes": [
+        {
+          "_typeHint": "dt.Simple",
+          "id": "fcc1ae1b-b9fc-43e1-b38c-76c034bee392",
+          "name": "integer",
+          "nullable": true
+        },
+        {
+          "_typeHint": "dt.Simple",
+          "id": "05345d14-609d-4c62-8c33-48961a117d76",
+          "name": "string",
+          "nullable": true
+        },
+        {
+          "_typeHint": "dt.Simple",
+          "id": "f843b1ab-7c60-49a0-9466-19f4554bca1a",
+          "name": "long",
+          "nullable": true
+        }
+      ]
+    }
+  },
+  "executionEvent": {
+    "planId": "951ef83e-435e-4180-8a14-636092fb49be",
+    "timestamp": 1645610056886,
+    "durationNs": 1434286300,
+    "extra": {
+      "appId": "local-1645610035589",
+      "readMetrics": {
+        "numOutputRows": 9,
+        "numFiles": 1,
+        "metadataTime": 0,
+        "filesSize": 290
+      },
+      "writeMetrics": {
+        "numFiles": 1,
+        "numOutputBytes": 58,
+        "numOutputRows": 4,
+        "numParts": 0
+      }
+    }
+  }
+}

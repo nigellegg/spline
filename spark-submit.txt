@@ -1,0 +1,26 @@
+spark-submit --packages za.co.absa.spline.agent.spark:spark-2.4-spline-agent-bundle_2.12:<VERSION> \
+  --conf "spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener" \
+  --conf "spark.spline.lineageDispatcher.http.producer.url=http://localhost:9090/producer" python_example.py [then any args]
+
+  spark-submit --packages za.co.absa.spline.agent.spark:spark-3.1-spline-agent-bundle_2.12:0.6.1 \
+  --conf spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener \
+  --conf spark.spline.lineageDispatcher=file --conf spark.spline.lineageDispatcher.file.className=/home/nigel/working/spline/pyspline/FileDump.scala\
+  --conf spark.spline.lineageDispatcher.file.fileName=file:=///home/nigel/working/spline/pyspline/lineage.csv\
+   python_example.py
+
+   --conf.spark.spline.lineageDispatcher.file.className=com.dispatcher.avnish.FileDumpLineageDispatcher
+
+spark-submit --packages za.co.absa.spline.agent.spark:spark-3.1-spline-agent-bundle_2.12:0.6.1 --conf spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener --conf spark.spline.lineageDispatcher=console --conf spark.spline.lineageDispatcher.console.className=za.co.absa.spline.harvester.dispatcher.ConsoleLineageDispatcher --conf spark.spline.lineageDispatcher.console.stream=OUT python_example.py
+
+spark-submit --packages za.co.absa.spline.agent.spark:spark-3.1-spline-agent-bundle_2.12:0.6.1
+ --conf spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener 
+ --conf spark.spline.lineageDispatcher=logging --conf spark.spline.lineageDispatcher.logging.className=za.co.absa.spline.harvester.dispatcher.LoggingLineageDispatcher --conf spark.spline.lineageDispatcher.logging.level=INFO python_example.py
+
+ spark-submit --packages za.co.absa.spline.agent.spark:spark-3.1-spline-agent-bundle_2.12:0.6.1 
+ --conf spark.sql.queryExecutionListeners=za.co.absa.spline.harvester.listener.SplineQueryExecutionListener 
+ --conf spark.spline.lineageDispatcher=hdfs 
+ --conf spark.spline.lineageDispatcher.hdfs.className=za.co.absa.spline.harvester.dispatcher.HDFSLineageDispatcher 
+ --conf spark.spline.lineageDispatcher.hdfs.fileName=_LINEAGE 
+ --conf spark.spline.lineageDispatcher.hdfs.fileBufferSize=4096 
+ python_example.py
+

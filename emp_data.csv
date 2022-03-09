@@ -1,0 +1,10 @@
+emp_id,name,manager_id,year_joined,dept_id,gender,salary
+1,Smith,-1,2018,10,M,3000
+2,Rose,1,2010,20,M,4000
+3,Williams,1,2010,10,M,1000
+4,Jones,2,2005,10,F,2000
+5,Brown,2,2010,40,,3000
+6,Brown,2,2010,50,,3500
+7,Green,3,2011,60,,2500
+8,Orange,3,2012,50,,4000
+9,Pink,3,2004,40,,1500
